@@ -28,9 +28,9 @@ June 2014 (https://repositorio.iscte-iul.pt/bitstream/10071/9499/5/dss_v3.pdf )
 This project tries to find the optimal solution for the classification task with two routes:
 1. Apply hyperparameter tunning to a sklearn logistic regression model fitted by a training script given by udacity. The idea here is to use Hyperdrive module, to find the best model.
 
-2. Use azure automl via the python SDK to build the best model
+2. Use azure automl via the python SDK to build the best model.
 
-Finally we can compare both approaches and choose the best overall model.
+Finally, we can compare both approaches and choose the best overall model.
 
 ## Scikit-learn Pipeline
 <img align="center" width="700" height="300" src="https://github.com/hualcosa/Optimizing_a_Pipeline_in_Azure/creating-and-optimizing-an-ml-pipeline.png">
@@ -52,7 +52,7 @@ Finally we can compare both approaches and choose the best overall model.
 
 ## Pipeline comparison
 The best model the hyperdrive job was capable of finding was a logistic-regression with the following hyperparameters:<br><br>
-<img align="center" width="700" height="300" src="https://github.com/hualcosa/Optimizing_a_Pipeline_in_Azure/logistic_regression_hyperdrive.png">
+<img align="center" width="700" height="300" src="creating-and-optimizing-an-ml-pipeline.png">
 <br><br>
 In contrast, the AutoML best performing model was a votingEnsemble that achieved the following mark:<br><br>
 <img align="center" width="700" height="300" src="https://github.com/hualcosa/Optimizing_a_Pipeline_in_Azure/voting_ensemble.png">
