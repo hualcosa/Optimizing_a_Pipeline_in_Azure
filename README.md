@@ -33,7 +33,9 @@ This project tries to find the optimal solution for the classification task with
 Finally, we can compare both approaches and choose the best overall model.
 
 ## Scikit-learn Pipeline
-<img align="center" width="700" height="300" src="https://github.com/hualcosa/Optimizing_a_Pipeline_in_Azure/creating-and-optimizing-an-ml-pipeline.png">
+
+![sklearn_pipeline](https://github.com/hualcosa/Optimizing_a_Pipeline_in_Azure/creating-and-optimizing-an-ml-pipeline.png)
+
  The pipeline starts with the execution of train.py file. This script will download the dataset, preprocess it,
  and fit a sklearn logistic regression classifier with the hyperparameters passed during the script invocation.
  This script is going to be used by Hyperdrive, which are azureml module for performing hyperparameter tunning.
