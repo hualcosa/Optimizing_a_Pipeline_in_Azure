@@ -18,7 +18,7 @@ The dataset used in this project contains data collected during direct marketing
 
 It consists of 32950 entries, 20 features containing information about the client, information relative to the `marketing campaign`, and `social and economic` metrics. 
 
-This is a classification problem wich goal is to predict if the client will subscribe (yes/no) to a bank term deposit (variable `y`).
+This is a classification problem whose goal is to predict if the client will subscribe (yes/no) to a bank term deposit (variable `y`).
 
 **original source of the data**: 
 [Moro et al., 2014] S. Moro, P. Cortez and P. Rita. A Data-Driven Approach to Predict the Success of Bank Telemarketing. Decision Support Systems, Elsevier, 62:22-31, 
@@ -54,7 +54,7 @@ Finally, we can compare both approaches and choose the best overall model.
 
 ## Pipeline comparison
 The best model the hyperdrive job was capable of finding was a logistic regression with the following hyperparameters:<br><br>
-<img align="center" width="700" height="300" src="creating-and-optimizing-an-ml-pipeline.png">
+<img align="center" width="700" height="300" src="logistic_regression_hyperdrive.png">
 <br><br>
 In contrast, the AutoML best-performing model was a votingEnsemble model that achieved the following marks:<br><br>
 <img align="center" width="700" height="300" src="voting_ensemble.png">
@@ -79,5 +79,5 @@ On the AutoML side, we could try to run the experiment longer to let the process
 a trade-off between the additional cost and the benefit that improving model accuracy will bring.
 
 ## Proof of cluster clean up
-<img align="center" width="700" height="300" src="https://github.com/hualcosa/Optimizing_a_Pipeline_in_Azure/deleting_cpu_cluster.png">
+<img align="center" width="700" height="300" src="deleting_cpu_cluster.png">
 
