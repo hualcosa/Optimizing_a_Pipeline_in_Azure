@@ -34,54 +34,50 @@ Finally, we can compare both approaches and choose the best overall model.
 
 ## Scikit-learn Pipeline
 
-![sklearn_pipeline](https://github.com/hualcosa/Optimizing_a_Pipeline_in_Azure/creating-and-optimizing-an-ml-pipeline.png)
+<img align="center" width="700" height="300" src="creating-and-optimizing-an-ml-pipeline.png">
 
  The pipeline starts with the execution of train.py file. This script will download the dataset, preprocess it,
  and fit a sklearn logistic regression classifier with the hyperparameters passed during the script invocation.
- This script is going to be used by Hyperdrive, which are azureml module for performing hyperparameter tunning.
+ This script is going to be used by Hyperdrive, which is an Azureml module for performing hyperparameter tunning.
  In order to use it, we will have to specify a sampling strategy. I have used RandomParameterSampling, which will randomly
  select a set of parameter values and fit the model based on it. It usually yields as good results as scanning the complete
- hyperparameter space, with the advantage of consuming less compute-resources. Another component defined was an early termination
- policy, specifically a BanditPolicy. This allow the experiment to avoid spending useless time fitting models
+ hyperparameter space, with the advantage of consuming fewer compute resources. Another component defined was an early termination
+ policy, specifically a BanditPolicy. This allows the experiment to avoid spending useless time fitting models
  in a region where parameter combinations are not yielding top results.
  <br><br>
  ## AutoML
  The second branch of the pipeline is going to read the same dataset, apply the preprocessing functions,
- and use azure's AutoML functionality, to create a job that will automatically search for the best performing model, i.e, the
+ and use Azure's AutoML functionality, to create a job that will automatically search for the best-performing model, i.e., the
  model with the best accuracy score. This strategy can be beneficial when we want quickly find a good model, without spending
- considerable time and money in R&D.
+ considerable time and money on R&D.
 
 
 ## Pipeline comparison
-The best model the hyperdrive job was capable of finding was a logistic-regression with the following hyperparameters:<br><br>
+The best model the hyperdrive job was capable of finding was a logistic regression with the following hyperparameters:<br><br>
 <img align="center" width="700" height="300" src="creating-and-optimizing-an-ml-pipeline.png">
 <br><br>
-In contrast, the AutoML best performing model was a votingEnsemble that achieved the following mark:<br><br>
-<img align="center" width="700" height="300" src="https://github.com/hualcosa/Optimizing_a_Pipeline_in_Azure/voting_ensemble.png">
+In contrast, the AutoML best-performing model was a votingEnsemble model that achieved the following marks:<br><br>
+<img align="center" width="700" height="300" src="voting_ensemble.png">
 <br><br>
 If we solely consider accuracy as the decisive factor, then the model found the AutoML model is the best pick, but if we also consider
-training time and model complexity, the scenario is a little bit different. It took 11 minutes to run the hyperdrive job in the compute cluster
-and to fit 20 different model configurations. It took 31 minutes to run the Automl experiment. AutoML is a more expensive
-alternative. The the difference between the accuracy of the best model from AutoML and Hyperdrive is only 0.00115%.
+training time and model complexity, the scenario is a little bit different. It took 11 minutes to run the hyperdrive job in the compute cluster.
+It took 31 minutes to run the Automl experiment. AutoML is a more expensive
+alternative. The difference between the accuracy of the best model from AutoML and Hyperdrive is only 0.00115%.
 
-The second point is that the best model from AutoML is an ensemble of 6 individual models. If we are concerned about
-deploying the model, and low latency becomes a requirement, deploying models like this might become an issue. The fine
-tuned logistic regression on the other hand is much more light weight.
+The second point is that the best model from AutoML is an ensemble of 6 individual models. If we intend to deploy the model, and low latency becomes a requirement, deploying models like this might become an issue. The fine
+tuned logistic regression on the other hand is much more lightweight.
 
 ## Conclusion
 If having the highest accuracy possible is the primary goal, then I would go if the AutoML VotingEnsemble model. Nonetheless,
-taking into consideration, training cost, model complexity, minimizing latency during deploying and the shy improvement in the
+taking into consideration, training cost, model complexity, minimizing latency during deploying, and the shy improvement in the
 accuracy when comparing the two strategies, I would choose the fine-tuned logistic regression.
 
 ## Future work
 A possible path to be explored is to include more hyperparameters in the hyperdrive experiment. Maybe this will allow the
 fitting of an even best performing model. <br>
 On the AutoML side, we could try to run the experiment longer to let the process try to find better alternatives. But there is
-a trade off between the additional cost it will take, and the benefit that improving model accuracy will bring.
-
-**What are some areas of improvement for future experiments? Why might these improvements help the model?**
+a trade-off between the additional cost and the benefit that improving model accuracy will bring.
 
 ## Proof of cluster clean up
-**If you did not delete your compute cluster in the code, please complete this section. Otherwise, delete this section.**
 <img align="center" width="700" height="300" src="https://github.com/hualcosa/Optimizing_a_Pipeline_in_Azure/deleting_cpu_cluster.png">
 
